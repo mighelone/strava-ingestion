@@ -1,4 +1,3 @@
-from typing import Any
 from fastapi import FastAPI, Response, Depends
 
 from .models import WebhookEvent
@@ -6,13 +5,15 @@ from .models import WebhookEvent
 
 app = FastAPI()
 
+
 class MessageManager:
     def __call__(self, event: WebhookEvent) -> None:
         print(event.model_dump_json())
 
 
-def get_msg_manager()-> MessageManager:
+def get_msg_manager() -> MessageManager:
     return MessageManager()
+
 
 @app.get("/")
 async def root():
