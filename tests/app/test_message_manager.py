@@ -1,6 +1,7 @@
 import json
-from moto import mock_aws
+
 import boto3
+from moto import mock_aws
 
 from app.message_manager import SQSMessageManager
 from app.models import StravaAspectType, StravaTypeEnum, StravaUpdate, WebhookEvent

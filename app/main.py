@@ -1,7 +1,6 @@
-from fastapi import FastAPI, Response, Depends
+from fastapi import Depends, FastAPI, Response
 
 from .models import WebhookEvent
-
 
 app = FastAPI()
 

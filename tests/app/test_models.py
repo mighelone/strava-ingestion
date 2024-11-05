@@ -1,4 +1,5 @@
 import pytest
+
 from app.models import StravaAspectType, StravaTypeEnum, StravaUpdate, WebhookEvent
 
 
