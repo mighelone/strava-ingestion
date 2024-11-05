@@ -1,5 +1,5 @@
 import pytest
-from app.models import StravaTypeEnum, StravaUpdate, WebhookEvent
+from app.models import StravaAspectType, StravaTypeEnum, StravaUpdate, WebhookEvent
 
 
 @pytest.mark.parametrize(
@@ -20,7 +20,7 @@ from app.models import StravaTypeEnum, StravaUpdate, WebhookEvent
             WebhookEvent(
                 object_type=StravaTypeEnum.activity,
                 object_id=1360128428,
-                aspect_type="update",
+                aspect_type=StravaAspectType.update,
                 updates=StravaUpdate(title="Messy"),
                 owner_id=134815,
                 subscription_id=120475,

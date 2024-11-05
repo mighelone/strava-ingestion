@@ -7,6 +7,7 @@ requires-python = ">=3.12"
 dependencies = [
     "boto3>=1.35.54",
     "fastapi[standard]>=0.115.4",
+    "pytest-cov>=6.0.0",
 ]
 
 [tool.uv]
@@ -57,3 +58,16 @@ docstring-code-format = false
 # This only has an effect when the `docstring-code-format` setting is
 # enabled.
 docstring-code-line-length = "dynamic"
+
+
+
+[tool.pytest.ini_options]
+minversion = 6.0
+addopts = "--cov=app --cov-report term-missing"
+testpaths = ["tests"]
+filterwarnings = [
+    "error",
+    "ignore::UserWarning",
+    "ignore::DeprecationWarning",
+    # note the use of single quote below to denote "raw" strings in TOML
+]

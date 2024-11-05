@@ -3,7 +3,7 @@ from moto import mock_aws
 import boto3
 
 from app.message_manager import SQSMessageManager
-from app.models import StravaTypeEnum, StravaUpdate, WebhookEvent
+from app.models import StravaAspectType, StravaTypeEnum, StravaUpdate, WebhookEvent
 
 
 @mock_aws
@@ -21,7 +21,7 @@ def test_message_manager_send_notification():
     event = WebhookEvent(
         object_type=StravaTypeEnum.activity,
         object_id=1360128428,
-        aspect_type="update",
+        aspect_type=StravaAspectType.update,
         updates=StravaUpdate(title="Messy"),
         owner_id=134815,
         subscription_id=120475,

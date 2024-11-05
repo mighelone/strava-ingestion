@@ -3,7 +3,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app.main import app, get_msg_manager
-from app.models import StravaTypeEnum, StravaUpdate, WebhookEvent
+from app.models import StravaAspectType, StravaTypeEnum, StravaUpdate, WebhookEvent
 
 
 @pytest.fixture
@@ -35,7 +35,7 @@ def test_process_message(client: TestClient, mock_message_manager: mock.MagicMoc
         WebhookEvent(
             object_type=StravaTypeEnum.activity,
             object_id=1360128428,
-            aspect_type="create",
+            aspect_type=StravaAspectType.create,
             updates=StravaUpdate(title="Messy"),
             owner_id=134815,
             subscription_id=120475,
