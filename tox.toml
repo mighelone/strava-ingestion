@@ -1,0 +1,6 @@
+requires = ["tox>=4"]
+env_list = [
+    "lint",
+    "type",
+    "3.12"
+]

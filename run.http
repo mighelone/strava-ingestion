@@ -13,3 +13,65 @@ content-type: application/json
         "title": "Messy"
     }
 }
+### http://www.strava.com/oauth/authorize?client_id=67774&response_type=code&redirect_uri=http://localhost/exchange_token&approval_prompt=force&scope=read,activity:read_all
+### http://localhost/exchange_token?state=&code=483cf479f1ca64acaab387581d7201467cec8939&scope=read
+### http://localhost/exchange_token?state=&code=f8b44302ede458613af21435738b893d76cc0003&scope=read,activity:read_all
+###
+# http://localhost/exchange_token?state=&code=79e5124845959adb0516ccd7998ed48f6ffd81d6&scope=read
+# http://localhost/exchange_token?state=&code=aab8c21c9656c8d142a851403a6163d61f62bd5f&scope=read,activity:read_all
+POST https://www.strava.com/oauth/token HTTP/1.1
+Content-Type: application/json
+
+{
+    "client_id": 67774,
+    "client_secret": "02a11393db3cd6245148b377f165ffe39454221d",
+    "code": "483cf479f1ca64acaab387581d7201467cec8939",
+    "grant_type": "authorization_code"
+}
+
+###
+curl -X POST https://www.strava.com/oauth/token \
+    -d client_id=67774 \
+    -d client_secret=02a11393db3cd6245148b377f165ffe39454221d \
+    -d code=f8b44302ede458613af21435738b893d76cc0003 \
+    -d grant_type=authorization_code
+
+###
+POST https://www.strava.com/oauth/token
+Content-Type: application/json
+
+{
+    "client_id": "67774",
+    "client_secret": "02a11393db3cd6245148b377f165ffe39454221d",
+    "refresh_token": "12bbf3379fab6b35d584e08197daf62c1c858b34",
+    "grant_type": "refresh_token"
+}
+
+###
+GET https://www.strava.com/api/v3/athlete
+Authorization: Bearer 257eb57f4eefb8e0d015b5cb47e6ec979cb8e30b
+
+###
+GET https://www.strava.com/api/v3/athlete/zones
+Authorization: Bearer 257eb57f4eefb8e0d015b5cb47e6ec979cb8e30b
+
+###
+GET https://www.strava.com/api/v3/athlete/81687/stats
+Authorization: Bearer 257eb57f4eefb8e0d015b5cb47e6ec979cb8e30b
+
+###
+GET https://www.strava.com/api/v3/activities
+Authorization: Bearer 257eb57f4eefb8e0d015b5cb47e6ec979cb8e30b
+
+### 
+GET https://www.strava.com/api/v3/activities/12959287619?include_all_efforts=true
+Authorization: Bearer 257eb57f4eefb8e0d015b5cb47e6ec979cb8e30b
+
+### 
+GET https://www.strava.com/api/v3/activities/12959287619/kudos
+Authorization: Bearer 257eb57f4eefb8e0d015b5cb47e6ec979cb8e30b
+
+### 
+# GET https://www.strava.com/api/v3/athlete/activities?after=1715295600&before=1714518000
+GET https://www.strava.com/api/v3/athlete/activities?page=50&per_page=5
+Authorization: Bearer 257eb57f4eefb8e0d015b5cb47e6ec979cb8e30b
