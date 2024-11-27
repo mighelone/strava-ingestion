@@ -362,6 +362,15 @@ wheels = [
 ]
 
 [[package]]
+name = "cron-descriptor"
+version = "1.4.5"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/02/83/70bd410dc6965e33a5460b7da84cf0c5a7330a68d6d5d4c3dfdb72ca117e/cron_descriptor-1.4.5.tar.gz", hash = "sha256:f51ce4ffc1d1f2816939add8524f206c376a42c87a5fca3091ce26725b3b1bca", size = 30666 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/88/20/2cfe598ead23a715a00beb716477cfddd3e5948cf203c372d02221e5b0c6/cron_descriptor-1.4.5-py3-none-any.whl", hash = "sha256:736b3ae9d1a99bc3dbfc5b55b5e6e7c12031e7ba5de716625772f8b02dcd6013", size = 50370 },
+]
+
+[[package]]
 name = "cryptography"
 version = "43.0.3"
 source = { registry = "https://pypi.org/simple" }
@@ -447,8 +456,16 @@ wheels = [
 ]
 
 [package.optional-dependencies]
+cli = [
+    { name = "cron-descriptor" },
+    { name = "pipdeptree" },
+]
 duckdb = [
     { name = "duckdb" },
+]
+motherduck = [
+    { name = "duckdb" },
+    { name = "pyarrow" },
 ]
 
 [[package]]
@@ -1164,6 +1181,15 @@ wheels = [
 ]
 
 [[package]]
+name = "pipdeptree"
+version = "2.9.6"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/0a/b2/2508e11f44e0e7b136555175f21c121f20642d43ab2a09797b178e968834/pipdeptree-2.9.6.tar.gz", hash = "sha256:f815caf165e89c576ce659b866c7a82ae4590420c2d020a92d32e45097f8bc73", size = 30858 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/41/2c/63ad89d8e01d471b91c0ad4d69ed45f5221f70f3ece6c097beecb7c67f7a/pipdeptree-2.9.6-py3-none-any.whl", hash = "sha256:de93f990d21224297c9f03e057da5a3dc65ff732a0147945dd9421671f13626b", size = 19768 },
+]
+
+[[package]]
 name = "platformdirs"
 version = "4.3.6"
 source = { registry = "https://pypi.org/simple" }
@@ -1734,7 +1760,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "boto3" },
-    { name = "dlt", extra = ["duckdb"] },
+    { name = "dlt", extra = ["duckdb", "motherduck"] },
     { name = "fastapi", extra = ["standard"] },
     { name = "pytest-cov" },
     { name = "python-dotenv" },
@@ -1743,6 +1769,7 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "boto3-stubs", extra = ["sns", "sqs"] },
+    { name = "dlt", extra = ["cli"] },
     { name = "httpie" },
     { name = "moto" },
     { name = "pre-commit" },
@@ -1754,7 +1781,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "boto3", specifier = ">=1.35.54" },
-    { name = "dlt", extras = ["duckdb"], specifier = ">=1.4.0" },
+    { name = "dlt", extras = ["duckdb", "motherduck"], specifier = ">=1.4.0" },
     { name = "fastapi", extras = ["standard"], specifier = ">=0.115.4" },
     { name = "pytest-cov", specifier = ">=6.0.0" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
@@ -1763,6 +1790,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "boto3-stubs", extras = ["sns", "sqs"], specifier = ">=1.35.54" },
+    { name = "dlt", extras = ["cli"], specifier = ">=1.4.0" },
     { name = "httpie", specifier = ">=3.2.4" },
     { name = "moto", extras = ["sns", "sqs"], specifier = ">=5.0.19" },
     { name = "pre-commit", specifier = ">=4.0.1" },
