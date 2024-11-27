@@ -450,6 +450,10 @@ wheels = [
 duckdb = [
     { name = "duckdb" },
 ]
+motherduck = [
+    { name = "duckdb" },
+    { name = "pyarrow" },
+]
 
 [[package]]
 name = "dnspython"
@@ -1734,7 +1738,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "boto3" },
-    { name = "dlt", extra = ["duckdb"] },
+    { name = "dlt", extra = ["duckdb", "motherduck"] },
     { name = "fastapi", extra = ["standard"] },
     { name = "pytest-cov" },
     { name = "python-dotenv" },
@@ -1754,7 +1758,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "boto3", specifier = ">=1.35.54" },
-    { name = "dlt", extras = ["duckdb"], specifier = ">=1.4.0" },
+    { name = "dlt", extras = ["duckdb", "motherduck"], specifier = ">=1.4.0" },
     { name = "fastapi", extras = ["standard"], specifier = ">=0.115.4" },
     { name = "pytest-cov", specifier = ">=6.0.0" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
