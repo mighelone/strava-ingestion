@@ -71,7 +71,7 @@ def get_activities(
         },
         "resources": [
             {
-                "name": "athlete",
+                "name": "activities",
                 "endpoint": {
                     "path": "/athlete/activities",
                     "params": {
