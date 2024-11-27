@@ -33,4 +33,4 @@ jobs:
     - name: Set up Python
       run: uv python install
     - name: Run pipeline script
-      run: python run_strava.py
+      run: uv run run_strava.py
