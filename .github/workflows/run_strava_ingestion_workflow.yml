@@ -1,11 +1,11 @@
 name: Run strava_ingestion pipeline from run_strava.py
-'on':
+on:
   schedule:
   - cron: 0 14 * * *
   workflow_dispatch: null
 env:
   DESTINATION__MOTHERDUCK__CREDENTIALS__DATABASE: my_db
-  STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }} }}
+  STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }} 
   STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
   STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
   DESTINATION__MOTHERDUCK__CREDENTIALS__PASSWORD: ${{ secrets.DESTINATION__MOTHERDUCK__CREDENTIALS__PASSWORD }}
@@ -33,4 +33,4 @@ jobs:
     - name: Set up Python
       run: uv python install
     - name: Run pipeline script
-      run: python 'run_strava.py'
+      run: python run_strava.py
