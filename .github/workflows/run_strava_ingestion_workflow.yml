@@ -1,36 +1,38 @@
 name: Run strava_ingestion pipeline from run_strava.py
 on:
   schedule:
-  - cron: 0 14 * * *
+    - cron: 0 14 * * *
   workflow_dispatch: null
 env:
   DESTINATION__MOTHERDUCK__CREDENTIALS__DATABASE: my_db
-  STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }} 
+  STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
   STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
   STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
   DESTINATION__MOTHERDUCK__CREDENTIALS__PASSWORD: ${{ secrets.DESTINATION__MOTHERDUCK__CREDENTIALS__PASSWORD }}
 jobs:
   maybe_skip:
     runs-on: ubuntu-latest
+    environment: prod
     outputs:
       should_skip: ${{ steps.skip_check.outputs.should_skip }}
     steps:
-    - id: skip_check
-      uses: fkirc/skip-duplicate-actions@v5
-      with:
-        concurrent_skipping: always
-        skip_after_successful_duplicate: 'false'
-        do_not_skip: '[]'
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@v5
+        with:
+          concurrent_skipping: always
+          skip_after_successful_duplicate: "false"
+          do_not_skip: "[]"
   run_pipeline:
     needs: maybe_skip
     if: needs.maybe_skip.outputs.should_skip != 'true'
     runs-on: ubuntu-latest
+    environment: prod
     steps:
-    - name: Check out
-      uses: actions/checkout@v3
-    - name: Install UV
-      uses: astral-sh/setup-uv@v3
-    - name: Set up Python
-      run: uv python install
-    - name: Run pipeline script
-      run: uv run run_strava.py
+      - name: Check out
+        uses: actions/checkout@v3
+      - name: Install UV
+        uses: astral-sh/setup-uv@v3
+      - name: Set up Python
+        run: uv python install
+      - name: Run pipeline script
+        run: uv run run_strava.py
