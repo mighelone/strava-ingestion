@@ -57,12 +57,6 @@ def get_activities(
                     "refresh_token": strava_refresh_token,
                 },
             ),
-            "paginator": PageNumberPaginator(
-                base_page=1,
-                page_param="page",
-                stop_after_empty_page=True,
-                total_path=None,
-            ),
         },
         "resource_defaults": {
             "primary_key": "id",
@@ -84,8 +78,23 @@ def get_activities(
                             ),
                         }
                     },
+                    "paginator": PageNumberPaginator(
+                        base_page=1,
+                        page_param="page",
+                        stop_after_empty_page=True,
+                        total_path=None,
+                    ),
                 },
-            }
+            },
+            {
+                "name": "bikes",
+                "endpoint": {
+                    "path": "/athlete",
+                    "data_selector": "bikes",
+                    "paginator": None,
+                },
+                "write_disposition": "replace",
+            },
         ],
     }
     yield from rest_api_resources(config)
