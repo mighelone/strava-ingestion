@@ -93,7 +93,11 @@ def get_activities(
                     "data_selector": "bikes",
                     "paginator": None,
                 },
-                "write_disposition": "replace",
+                "write_disposition": {"disposition": "merge", "strategy": "upsert"},
+                "primary_key": "id",
+                "columns": {
+                    "id": {"unique": True},
+                },
             },
         ],
     }
