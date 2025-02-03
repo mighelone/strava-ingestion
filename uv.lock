@@ -1809,6 +1809,7 @@ dependencies = [
     { name = "fastapi", extra = ["standard"] },
     { name = "pytest-cov" },
     { name = "python-dotenv" },
+    { name = "typer" },
 ]
 
 [package.dev-dependencies]
@@ -1830,6 +1831,7 @@ requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.115.4" },
     { name = "pytest-cov", specifier = ">=6.0.0" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
+    { name = "typer", specifier = ">=0.12.5" },
 ]
 
 [package.metadata.requires-dev]
